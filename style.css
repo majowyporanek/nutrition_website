@@ -583,8 +583,8 @@ span.bar {
 
 @media only screen and(max-height:650px){
     .popup-content{
-        min-width:10em;
-        max-width: 600px;
+        min-height:10em;
+        max-height: 600px;
     }
 }
 
