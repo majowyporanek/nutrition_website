@@ -581,6 +581,12 @@ span.bar {
 
 }
 
+@media only screen and(max-height:600px){
+    .popup-content{
+        max-height: 80%;
+    }
+}
+
 
 @media only screen and (max-width: 750px){
     .diet-plans-img{
