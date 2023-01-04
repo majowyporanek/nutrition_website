@@ -53,10 +53,13 @@ main {
     height: auto;
     display: flex;
     justify-content: center;
+    align-items: center;
     padding: 0;
     flex-direction: column;
 
 }
+
+
 
 .main-content, .recipes {
     max-width: 100%;
@@ -68,6 +71,10 @@ main {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.main-content {
+    width: 90%;
 }
 
 .recipes {
@@ -296,10 +303,11 @@ span.bar {
     display: flex;
     border-radius: 1em;
     border: 3px solid var(--darker-beige);
-    justify-content: center;
+    justify-content:  space-between;
     align-items: center;
     padding: 0;
 }
+
 
 
 .popup-text {
