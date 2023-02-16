@@ -1,0 +1,182 @@
+<!-- views/login.ejs -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>register</title>
+    <style>
+        :root {
+        --bg-color: #fefae0;
+        --nav-bg-color: #558c5d; 
+        --text-color: #070b07;
+        --logo-color: #698f69;
+        --darker-beige: #d4a373;
+        --light-green: #e9edc9;
+        --hover-text: #393c39;
+    }
+
+    html {
+        font-family: 'Poppins', sans-serif;
+        color: var(--text-color);
+        width: 100%;
+        scroll-behavior: smooth;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--bg-color);
+        opacity: 90%;
+    }
+
+    .main-content {
+        width: 60vh;
+        padding: 4em 2em;
+        padding-top: 0;
+        border-radius: 1em;
+        background-color: var(--light-green);
+        height: 70vh;
+        max-height: fit-content;
+        margin: 0 5em;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap:2em;
+        align-items: center;
+        height: fit-content;
+        overflow: auto;
+    }
+
+    .register {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+
+    h1 {
+        text-align: center;
+        margin: 0;
+        margin-top: 1em;
+        padding: 0;
+        color: var(--nav-bg-color);
+        font-size: 2.5em;
+    }
+
+    a {
+        text-decoration: none;
+        color: var(--text-color);
+        text-transform: uppercase;
+        letter-spacing: .2em;
+        cursor: pointer;
+    }
+
+    a:hover {
+        color: var(--logo-color);
+    }
+
+
+    a:active {
+        color: var(--nav-bg-color);
+    }
+
+    p {
+        font-weight: 700;
+        letter-spacing: .2em;
+        font-size: 1em;
+        color: var(--text-color);
+    }
+
+    p#milo {
+        color: var(--logo-color);
+    }
+
+
+    form {
+        max-width: 50vh;
+        width: 50vh;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1em;
+        border-radius: 0.313em;
+        padding: 1.25em;
+        height: fit-content;
+    }
+
+    label {
+        display: block;
+        font-size: 1em;
+        margin-bottom: 0.313em;
+        letter-spacing: .2em;
+        color: var(--hover-text);
+        font-weight: 700;
+    }
+
+    input[type="text"], input[type="password"] {
+        width: 100%;
+        padding: 1em;
+        border: 0.063em solid var(--bg-color);
+        border-radius: 0.25em;
+        margin-bottom: 0.625em;
+    }
+
+    button[type="submit"] {
+        background-color: var(--logo-color);
+        color: var(--bg-color);
+        border: none;
+        border-radius: 0.25em;
+        padding: 0.625em;
+        font-size: 1em;
+        cursor: pointer;
+        padding: 1.2em;
+    }
+
+    button[type="submit"]:hover {
+        background-color: var(--nav-bg-color);
+    }
+    
+    </style>
+</head>
+<body>
+    <div class="main-content">
+        <div>
+            <h1>Cześć,</h1>
+            <p id="milo">miło Cię widzieć.</p>
+        </div>
+        <div class="main">
+        <form method="POST" action="/login">
+            <div>
+                <label for="fullname">imię:</label>
+                <input type="text" id="fullname" name="fullname" required>
+            </div>
+
+            <div>
+                <label for="username">login:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div>
+                <label for="password">hasło:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div>
+                <button type="submit">zarejestruj się</button>
+            </div>
+        </form>
+        <div class="register">
+            <p>Masz już konto?</p>
+            <a href="/login">Zaloguj się</a>
+        </div>
+    </div>
+    </div>
+</body>
+</html>
