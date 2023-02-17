@@ -152,11 +152,15 @@
             <h1>Cześć,</h1>
             <p id="milo">miło Cię widzieć.</p>
         </div>
+        <%if(messages.error){ %>
+            <p class="error" style="color: red; font-style: italic; font-weight: 400;"> <%=messages.error%></p>
+
+        <%}%>
         <div class="main">
         <form method="POST" action="/login">
             <div>
-                <label for="username">login:</label>
-                <input type="text" id="username" name="username" required>
+                <label type="email" for="email">login:</label>
+                <input type="text" id="email" name="email" required>
             </div>
             <div>
                 <label for="password">hasło:</label>
