@@ -1,28 +1,27 @@
 const localStrategy = require("passport-local").Strategy
 const bcrypt = require("bcrypt")
+const User = require("./User")
 
 function initialize(passport, getUserByEmail, getUserById){
     // user authentication
     const authenticateUsers = async (email, password, done) => {
-        const user = getUserByEmail(email)
-
-        if(user == null){
-            return done(null, false, {message: "Nie znaleziono takiego użytkownika"})
-        }
-
         try {
-            //password comparation
-            if (await bcrypt.compare(password, user.password)){
-                return done(null, user)
-            }else {
-                return done(null, false, {message: "Niepoprawne hasło"})
-            }
-            
-        } catch (e) {
-            console.log(e);
-            return done(e)
-        }
+            const user = await User.findOne({email: email})
 
+            if(!user){
+                return done(null, false, {message: "Nie znaleziono takiego użytkownika"})
+            }
+
+            const isMatch = await bcrypt.compare(password, user.password)
+
+            if(!isMatch){
+                return done(null,false, {message: "Incorrect password"} )
+            }
+
+            return done(null, user)
+        }catch(err){
+            return done(err)
+        }
     }
 
     passport.use(new localStrategy({usernameField: 'email'}, authenticateUsers))
@@ -38,8 +37,13 @@ function initialize(passport, getUserByEmail, getUserById){
     })
 
     // to retrieves the user obj associated with his identifier
-    passport.deserializeUser((id, done) => {
-        return done(null, getUserById(id))
+    passport.deserializeUser(async (id, done) => {
+        try {
+            const user = await User.findById(id)
+            done(null, user)
+        }catch(err){
+            return done(err)
+        }
     })
 }
 

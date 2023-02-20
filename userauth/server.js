@@ -4,20 +4,48 @@ if(process.env.NODE_ENV !== "production"){
 }
 
 
-const express = require("express")
+const express = require('express')
+const mongoose = require('mongoose')
 const app = express()
+// const router = app.router()
 const path = require('path')
 const bcrypt = require('bcrypt')
 const passport = require("passport")
-const initializePassport = require("./passport-con")
-const flash = require("express-flash")
-const session = require("express-session")
-const methodOverride = require("method-override") 
-//????
-const ejs = require('ejs');
-const { off } = require("process")
-app.set('view engine', 'ejs')
+const initializePassport = require('./passport-con')
+const flash = require('express-flash')
+const session = require('express-session')
+const methodOverride = require('method-override') 
 
+const ejs = require('ejs');
+// const { off } = require('process')
+app.set('view engine', 'ejs')
+app.use('/public/', express.static('./public'));
+
+
+
+const uri = 'mongodb+srv://majowyporanek:jtpwgdotw0101@nutritionwebsite.6fuodk3.mongodb.net/?retryWrites=true&w=majority'
+const User = require("./User")
+const { ClientRequest } = require("http")
+
+//database
+// const users = []
+
+async function connect() {
+    try {
+        await mongoose.connect(uri)
+        console.log("connected to MongoDB")
+    } catch(error){
+        console.log(error);
+    }
+}
+mongoose.set('strictQuery', true);
+connect()
+
+// database end
+
+
+
+// password
 
 initializePassport(
     passport,
@@ -25,8 +53,6 @@ initializePassport(
     id => users.find(user => user.id === id)
     )
 
-//temp 'database' 
-const users = []
 
 app.use(express.urlencoded({extended: false}))
 app.use(express.static(path.join(__dirname, 'staticpage')))
@@ -44,7 +70,7 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 
-
+//ROUTES
 app.post('/login',checkNotAuthenticated, passport.authenticate('local', {
     successRedirect: '/',
     failureRedirect: "/login",
@@ -52,31 +78,30 @@ app.post('/login',checkNotAuthenticated, passport.authenticate('local', {
 }))
 
 
-// register part
-app.post("/register",checkNotAuthenticated, async(req, res) => {
+// register in a database
+app.post("/register", checkNotAuthenticated, async (req, res) => {
     try {
-        const hashedPassword = await bcrypt.hash(req.body.password, 10)
-        users.push({
-            id: Date.now().toString(),
-            name: req.body.name,
-            email: req.body.email,
-            password: hashedPassword,
-        })
-        console.log(users)
-        res.redirect("/login")
-    } catch(e) {
-        console.log(e);
-        res.redirect("/register")
+      const hashedPassword = await bcrypt.hash(req.body.password, 10);
+      const user = new User({
+        name: req.body.name,
+        email: req.body.email,
+        password: hashedPassword
+      });
+      await user.save();
+      console.log(user)
+      res.redirect("/login");
+    } catch (e) {
+      console.log(e);
+      res.redirect("/register");
     }
-})
+  });
+  
 
 
-
-//routes
 app.get('/', (req, res) => {
     // res.sendFile(path.join(__dirname, 'static', 'index.html'))
     if(req.isAuthenticated()){
-        res.render('pages/index2.ejs')
+        res.render('pages/index2.ejs', {user: req.user})
     }else {
         res.render('pages/index.ejs')
     }
@@ -89,21 +114,32 @@ app.get('/login', checkNotAuthenticated, (req, res) =>{
 app.get('/register', checkNotAuthenticated,(req, res)=>{
     res.render("register.ejs")
 })
-//end routes
 
-// app.delete("logout", (req, res) => {
-//     req.logOut()
-//     res.redirect("/")
-// })
 
 app.delete('/logout', (req, res) => {
     req.logout(req.user, err =>{
         if(err) return next(err)
         res.redirect("/")
     })
-    // res.redirect('/');
   });
 
+
+// requests to /users/:id
+app.get('/userpage/:id', checkAuthenticated, async(req, res)=>{
+    try {
+        const clientData = await User.findById(req.params.id)
+        res.render('userpage.ejs', {user: clientData})
+    }catch(err){
+        console.log(err);
+        res.redirect('/')
+    }
+})
+
+
+//end routes
+
+
+//authentication
 
 function checkAuthenticated(req, res, next) {
     if(req.isAuthenticated()){
@@ -118,5 +154,7 @@ function checkNotAuthenticated(req, res, next){
     }
     next()
 }
+
+
 
 app.listen(3000)

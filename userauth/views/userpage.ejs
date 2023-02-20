@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>My Page</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Bootstrap CSS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;700&display=swap" rel="stylesheet">
+  <!-- <script src="script.js" defer></script> -->
+  <%- include('../public/styleuser.ejs') %>
+  <!-- <link rel="stylesheet" href="/pages/style.css"> -->
+
+</head>
+
+<body>
+  <div class="container">
+    <header>
+        <nav>
+            <p class="logo">nutrition</p>
+            <!-- <img src="logo.png" alt=""> -->
+            <div class="links">
+                <ul class="nav-bar">
+                    <li class="nav-bar-item"><a href="/">strona główna</a></li>
+                    <li class="nav-bar-item"><a href="#oferta">o mnie</a></li>
+                    <li class="nav-bar-iten"><a href="#oNas">posiłki</a></li>
+                    <li class="nav-bar-iten"><a href="/login">ustawienia</a></li>
+                    <li class="nav-bar-item">
+                      <form action="/logout?_method=DELETE" method="POST">
+                        <button type="submit">wyloguj się</button>
+                    </form>
+
+                </ul>
+            </div>
+
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+    <main>
+      <div id="Strona-glowna" class="main-content">
+        <img src="../public/food.jpg" alt="">
+
+        <div class="info">
+            <div class="text">
+            <h1>Witaj <%= user.name %> !</h1>
+            <p class="quote" style="font-style: italic;"></p>
+            </div>
+        </div>
+    </div>
+    <div class="main-content info-about-user">
+      <div id="Strona-glowna" class="main-content ">
+        <div class="info">
+            <div class="text current-info">
+              <h3>O mnie</h3>
+            <p>login: <strong><%= user.email %></strong></p>
+            <p>wiek: <strong><%= user.age %></strong></p>
+            <p>waga: <strong><%= user.weight %></strong></p>
+            <p>wzrost: <strong><%= user.height %></strong></p>
+            <p>preferencje żywieniowe: <strong><%= user.dietPreferences.join(", ") %></strong></p>
+            </div>
+            <button type="submit">edytuj dane</button>
+
+        </div>
+    </div>
+    <div id="Strona-glowna" class="main-content">
+      <img src="../public/food.jpg" alt="">
+
+      <div class="info">
+          <div class="text">
+          <h1>Witaj <%= user.name %> !</h1>
+          <p>Miło <strong>Cię</strong>  znów widzieć </p>
+          </div>
+      </div>
+  </div>
+</div>
+    </main>
+    </div>
+  <%- include('../public/scriptuser.ejs') %>
+</body>
+</html>

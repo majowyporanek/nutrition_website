@@ -83,10 +83,10 @@
                         <li class="nav-bar-item"><a href="#oferta">Oferta</a></li>
                         <li class="nav-bar-item"><a href="#Przepisy">Przepisy</a></li>
                         <li class="nav-bar-item"><a href="#oNas">O nas</a></li>
-                        <li class="nav-bar-item"><a href="/login">Strefa klienta</a></li>
+                        <li class="nav-bar-item"><a href="/userpage/<%= user.id %>">Strefa klienta</a></li>
                         <li class="nav-bar-item">
                           <form action="/logout?_method=DELETE" method="POST">
-                            <button type="submit">Log Out</button>
+                            <button type="submit">wyloguj się</button>
                           </form>
                         </li>
 

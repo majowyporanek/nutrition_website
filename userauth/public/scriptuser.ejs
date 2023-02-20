@@ -1,0 +1,131 @@
+<script>
+    const hamburger = document.querySelector(".hamburger");
+    const navBar = document.querySelector(".nav-bar");
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        // const navBar = document.querySelector(".nav-bar");
+        navBar.classList.toggle('active');
+    });
+    
+    const items = document.querySelectorAll(".nav-bar-item");
+    
+    items.forEach(item=> item.addEventListener('click', () => {
+        hamburger.classList.remove("active");
+        navBar.classList.remove("active");
+    }));
+    
+    
+    var prevScrollpos = window.pageYOffset;
+    window.onscroll = function() {
+    var currentScrollPos = window.pageYOffset;
+      if (prevScrollpos > currentScrollPos) {
+        if(hamburger.classList.contains('active')) {
+        navBar.classList.add('active');
+        }
+      } else {
+        navBar.classList.remove('active');
+      }
+      prevScrollpos = currentScrollPos;
+    }
+
+    // cytaty
+// fetch and display a new quote immediately
+// fetchQuote();
+
+// // set an interval to fetch and display a new quote every 24 hours
+// setInterval(fetchQuote, 24 * 60 * 60 * 1000);
+
+// function fetchQuote() {
+//   fetch('https://quotes.rest/qod?category=inspire')
+//     .then(response => response.json())
+//     .then(data => {
+//       const quote = data.contents.quotes[0].quote;
+//       const author = data.contents.quotes[0].author;
+//       // display the quote on your website
+//       document.querySelector('.quote').innerHTML = `"${quote}" - ${author}`;
+//     })
+//     .catch(error => {
+//       console.error(error);
+//     });
+// }
+
+// check if a quote is stored in the user's session or local storage
+// let quote = sessionStorage.getItem('quote') || localStorage.getItem('quote');
+
+// if (!quote) {
+//   // if no quote is stored, make a request to the They Said So - Random Quotes API to get a random quote
+//   fetch('https://quotes.rest/qod?category=inspire')
+//     .then(response => response.json())
+//     .then(data => {
+//       quote = data.contents.quotes[0].quote;
+//       // store the quote in the user's session or local storage
+//       if (sessionStorage) {
+//         sessionStorage.setItem('quote', quote);
+//       } else {
+//         localStorage.setItem('quote', quote);
+//       }
+//       // display the random quote on your website
+//       document.querySelector('.quote').innerHTML = `"${quote}"`;
+//     })
+//     .catch(error => {
+//       console.error(error);
+//     });
+// } else {
+//   // if a quote is stored, display it on the website
+//   document.querySelector('.quote').innerHTML = `"${quote}"`;
+// }
+
+
+// check if a quote is stored in the user's session or local storage
+let quote = sessionStorage.getItem('quote') || localStorage.getItem('quote');
+
+if (!quote) {
+  // if no quote is stored, make a request to the They Said So - Random Quotes API to get a random quote
+  fetch('https://quotes.rest/qod?category=inspire')
+    .then(response => response.json())
+    .then(data => {
+      quote = data.contents.quotes[0].quote;
+      // store the quote in the user's session or local storage
+      if (sessionStorage) {
+        sessionStorage.setItem('quote', quote);
+      } else {
+        localStorage.setItem('quote', quote);
+      }
+      // display the random quote on your website
+      document.querySelector('.quote').innerHTML = `"${quote}"`;
+    })
+    .catch(error => {
+      console.error(error);
+    });
+} else {
+  // if a quote is stored, display it on the website
+  document.querySelector('.quote').innerHTML = `"${quote}"`;
+
+  // clear the stored quote after 24 hours
+  const storedTime = sessionStorage.getItem('quoteTime') || localStorage.getItem('quoteTime');
+  if (!storedTime || Date.now() - storedTime >= 86400000) {
+    if (sessionStorage) {
+      sessionStorage.removeItem('quote');
+      sessionStorage.removeItem('quoteTime');
+    } else {
+      localStorage.removeItem('quote');
+      localStorage.removeItem('quoteTime');
+    }
+  }
+}
+
+// when the user logs out, clear the stored quote from the user's session or local storage
+function logout() {
+  if (sessionStorage) {
+    sessionStorage.removeItem('quote');
+    sessionStorage.removeItem('quoteTime');
+  } else {
+    localStorage.removeItem('quote');
+    localStorage.removeItem('quoteTime');
+  }
+}
+
+
+
+  
+    </script>
