@@ -10,4 +10,15 @@ const userSchema = new mongoose.Schema({
     dietPreferences: {type: [String], default: []}
 })
 
+userSchema.methods.updatePassword = async function (currentPassword, newPassword) {
+    const isMatch = await bcrypt.compare(currentPassword, this.password)
+
+    if (!isMatch) {
+        throw new Error('Incorrect password')
+    }
+
+    this.password = await bcrypt.hash(newPassword, 10)
+    await this.save()
+}
+
 module.exports = mongoose.model("User", userSchema)

@@ -7,7 +7,6 @@ if(process.env.NODE_ENV !== "production"){
 const express = require('express')
 const mongoose = require('mongoose')
 const app = express()
-// const router = app.router()
 const path = require('path')
 const bcrypt = require('bcrypt')
 const passport = require("passport")
@@ -17,7 +16,6 @@ const session = require('express-session')
 const methodOverride = require('method-override') 
 
 const ejs = require('ejs');
-// const { off } = require('process')
 app.set('view engine', 'ejs')
 app.use('/public/', express.static('./public'));
 
@@ -26,6 +24,7 @@ app.use('/public/', express.static('./public'));
 const uri = 'mongodb+srv://majowyporanek:jtpwgdotw0101@nutritionwebsite.6fuodk3.mongodb.net/?retryWrites=true&w=majority'
 const User = require("./User")
 const { ClientRequest } = require("http")
+const { use } = require("passport")
 
 //database
 // const users = []
@@ -95,7 +94,8 @@ app.post("/register", checkNotAuthenticated, async (req, res) => {
       res.redirect("/register");
     }
   });
-  
+
+
 
 
 app.get('/', (req, res) => {
@@ -135,6 +135,34 @@ app.get('/userpage/:id', checkAuthenticated, async(req, res)=>{
     }
 })
 
+app.get('/settings/:id', checkAuthenticated, async(req, res)=>{
+    try{
+        const clientData = await User.findById(req.params.id)
+        res.render('settings.ejs', {user: clientData})
+    }catch(err){
+        console.log(err);
+        res.redirect('/')
+    }
+})
+
+
+// route to handle form
+app.post('/settings/:id', async(req, res)=> {
+    const {name, email, age, weight, height, dietPreferences} = req.body;
+
+
+    try {
+        const user = await User.findByIdAndUpdate(
+            req.params.id, 
+            {name, email, age, weight, height, dietPreferences},
+            {new: true}
+        )
+
+    res.redirect('/userpage/' + user.id)
+    }catch(err){
+        console.log(err);
+    }
+})
 
 //end routes
 

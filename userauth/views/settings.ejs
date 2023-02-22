@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Settings</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+        --bg-color: #fefae0;
+        --nav-bg-color: #558c5d; 
+        --text-color: #070b07;
+        --logo-color: #698f69;
+        --darker-beige: #d4a373;
+        --light-green: #e9edc9;
+        --hover-text: #393c39;
+        }
+        h1 {
+            color: var(--logo-color);
+            margin-bottom: 1em;
+        }
+
+        html {
+            font-family: 'Poppins', sans-serif;
+;
+        }
+
+        body {
+            background-color: var(--bg-color);
+        }  
+
+    </style>
+</head>
+<body>
+    <div class="container-fluid" style="padding: 4em 2em;">
+        <%if(messages.error){ %>
+            <p class="error" style="color: red; font-style: italic; font-weight: 400;"> <%=messages.error%></p>
+        <%}%>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h1 class="text-center">Zaaktualizuj dane</h1>
+                <form action="/settings/<%= user.id%>" method="POST">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Imię:</label>
+                        <input type="text" class="form-control" id="name" name="name" value='<%=user.name%>'>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Login:</label>
+                        <input type="text" class="form-control" id="email" name="email" value='<%=user.email%>'>
+                    </div>
+                    <div class="mb-3">
+                        <label for="age" class="form-label">Wiek:</label>
+                        <input type="number" class="form-control" id="age" name="age" value='<%=user.age%>'>
+                    </div>
+                    <div class="mb-3">
+                        <label for="weight" class="form-label">Waga:</label>
+                        <input type="number" class="form-control" id="weight" name="weight" value='<%=user.weight%>'>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="weight" class="form-label">Wzrost:</label>
+                        <input type="number" class="form-control" id="height" name="height" value='<%=user.weight%>'>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="dietPreferences" class="form-label">Preferencje dietetyczne:</label>
+                        <input type="text" class="form-control" id="dietPreferences" name="dietPreferences" value='<%=user.dietPreferences.join(", ")%>'>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Stare hasło:</label>
+                        <input type="password" class="form-control" id="password" name="password">
+                    </div>
+
+                    <div class="mb-3">
+                    <label for="newPassword" class="form-label">Nowe hasło:</label>
+                    <input type="password" class="form-control" id="newPassword" name="newPassword">
+                    </div>
+
+                    
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-success">Zapisz</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/js/bootstrap.min.js"></script>
+</body>
+</html>

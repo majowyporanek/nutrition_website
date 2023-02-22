@@ -26,7 +26,8 @@
                     <li class="nav-bar-item"><a href="/">strona główna</a></li>
                     <li class="nav-bar-item"><a href="#oferta">o mnie</a></li>
                     <li class="nav-bar-iten"><a href="#oNas">posiłki</a></li>
-                    <li class="nav-bar-iten"><a href="/login">ustawienia</a></li>
+
+                    <li class="nav-bar-iten"><a href="/settings/<%= user.id %>">ustawienia</a></li>
                     <li class="nav-bar-item">
                       <form action="/logout?_method=DELETE" method="POST">
                         <button type="submit">wyloguj się</button>
@@ -60,11 +61,13 @@
               <h3>O mnie</h3>
             <p>login: <strong><%= user.email %></strong></p>
             <p>wiek: <strong><%= user.age %></strong></p>
-            <p>waga: <strong><%= user.weight %></strong></p>
-            <p>wzrost: <strong><%= user.height %></strong></p>
+            <p>waga: <strong><%= user.weight %> 
+            <%if(user.weight){ %>kg<%}%></strong></p>
+            <p>wzrost: <strong><%= user.height %>
+            <%if(user.height){ %>cm<%}%></strong></p></strong></p>
             <p>preferencje żywieniowe: <strong><%= user.dietPreferences.join(", ") %></strong></p>
             </div>
-            <button type="submit">edytuj dane</button>
+            <a href="/settings/<%= user.id %>">edytuj dane</a>
 
         </div>
     </div>
