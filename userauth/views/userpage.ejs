@@ -71,10 +71,7 @@
             <p>wzrost: <strong><%= user.height %>
             <%if(user.height){ %>cm<%}%></strong></p></strong></p>
             <p>preferencje żywieniowe: <strong><%= user.dietPreferences.join(", ") %></strong></p>
-            <p>aktualna dieta<strong>
-            <%
-                        %>
-              <%=user.mealPlan%>
+            <p>aktualny tryb żywieniowy: <strong>
               <%if(user.mealPlan){ %><%=user.mealPlan.name%><%}%></strong></p>
             </p>
             </div>
