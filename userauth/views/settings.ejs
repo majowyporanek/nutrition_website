@@ -31,6 +31,23 @@
             background-color: var(--bg-color);
         }  
 
+        a {
+            text-decoration: none;
+            color: var(--text-color);
+            box-shadow: inset 0 0 0 0 var(--light-green);
+            transition: color .5s ease-in-out, box-shadow .4s ease-in-out;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            font-size: 0.8em;
+        }
+
+        a:hover {
+            box-shadow: inset 300px 0 0 0 var(--light-green);
+            color: var(--text-color);
+        }
+
+
     </style>
 </head>
 <body>
@@ -70,6 +87,19 @@
                     </div>
 
                     <div class="mb-3">
+                        <label for="dietType" class="form-label">Typ Diety:</label>
+                        <select class="form-control" id="dietType" name="dietType">
+                        <option value="" default></option>
+                        <option value="Śródziemnomorski">Dieta śródziemnomorska</option>
+                        <option value="Wegetariański">Dieta wegetarianska</option>
+                        <option value="Jesienny">Dieta jesienna</option>
+                        </select>
+                    </div>
+                      
+
+                    
+
+                    <div class="mb-3">
                         <label for="password" class="form-label">Stare hasło:</label>
                         <input type="password" class="form-control" id="password" name="password">
                     </div>
@@ -83,6 +113,8 @@
                     <div class="text-center">
                         <button type="submit" class="btn btn-success">Zapisz</button>
                     </div>
+
+                    <a href="/userpage/<%= user.id %>">anluj i wróć do strony klienta</a>
                 </form>
             </div>
         </div>

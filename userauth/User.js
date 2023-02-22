@@ -1,4 +1,17 @@
 const mongoose = require('mongoose')
+const Schema = mongoose.Schema
+const MealPlan = require('./DietPlan')
+
+
+async function connect() {
+    try {
+        await mongoose.connect(uri)
+
+        console.log("connected to MongoDB")
+    } catch(error){
+        console.log(error);
+    }
+}
 
 const userSchema = new mongoose.Schema({
     name: {type: String, required: true},
@@ -7,7 +20,10 @@ const userSchema = new mongoose.Schema({
     age: {type: Number, default: null},
     weight: {type: Number, default: null},
     height: {type: Number, default: null},
-    dietPreferences: {type: [String], default: []}
+    dietPreferences: {type: [String], default: []},
+    mealPlan: { type: mongoose.Schema.Types.ObjectId, ref: 'MealPlan', default: null,
+    enum: ['Jesienny', 'Śródziemnomorski', 'Wegetariański']}
+
 })
 
 userSchema.methods.updatePassword = async function (currentPassword, newPassword) {

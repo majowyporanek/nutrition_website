@@ -23,6 +23,7 @@ app.use('/public/', express.static('./public'));
 
 const uri = 'mongodb+srv://majowyporanek:jtpwgdotw0101@nutritionwebsite.6fuodk3.mongodb.net/?retryWrites=true&w=majority'
 const User = require("./User")
+const {Meal, MealPlan} = require("./DietPlan")
 const { ClientRequest } = require("http")
 const { use } = require("passport")
 
@@ -32,6 +33,8 @@ const { use } = require("passport")
 async function connect() {
     try {
         await mongoose.connect(uri)
+
+
         console.log("connected to MongoDB")
     } catch(error){
         console.log(error);
@@ -99,7 +102,6 @@ app.post("/register", checkNotAuthenticated, async (req, res) => {
 
 
 app.get('/', (req, res) => {
-    // res.sendFile(path.join(__dirname, 'static', 'index.html'))
     if(req.isAuthenticated()){
         res.render('pages/index2.ejs', {user: req.user})
     }else {
@@ -119,9 +121,12 @@ app.get('/register', checkNotAuthenticated,(req, res)=>{
 app.delete('/logout', (req, res) => {
     req.logout(req.user, err =>{
         if(err) return next(err)
+        req.session.destroy();
         res.redirect("/")
     })
+
   });
+
 
 
 // requests to /users/:id
@@ -147,22 +152,105 @@ app.get('/settings/:id', checkAuthenticated, async(req, res)=>{
 
 
 // route to handle form
-app.post('/settings/:id', async(req, res)=> {
-    const {name, email, age, weight, height, dietPreferences} = req.body;
+// app.post('/settings/:id', async(req, res)=> {
+//     const {name, email, age, weight, height, dietPreferences, dietType,  currentPassword, newPassword} = req.body;
 
+
+//     try {
+//         const user = await User.findById(req.params.id)
+//         user.name = name
+//         user.email = email
+//         user.age = age
+//         user.weight = weight
+//         user.height = height
+//         user.dietPreferences = dietPreferences
+
+//         if(currentPassword && newPassword){
+//             const isMatch = await bcrypt.compare(currentPassword, user.password)
+
+//             if(!isMatch) {throw new Error('Niezgodne haslo')}
+
+//             const hashedPassword = await bcrypt.hash(newPassword, 10)
+//             await user.updatePassword(currentPassword, hashedPassword)
+//         }
+//         try {
+//             console.log("przed zapisem");
+//             await user.save()
+//             console.log(user);
+//             console.log("po zapisie");
+//         }
+//         catch(err) {
+//             log("Blad zapisu: ", err)
+//         }
+
+
+//         console.log("Haslo zaaktualizowane");
+//         res.redirect('/userpage/' + user.id)
+//     }catch(err){
+//         console.log(err);
+//     }
+// })
+
+app.post('/settings/:id', async(req, res)=> {
+    const {name, email, age, weight, height, dietPreferences, dietType,  currentPassword, newPassword} = req.body;
+    let dietTypeVal = req.body.dietType
+    console.log(dietTypeVal);
 
     try {
-        const user = await User.findByIdAndUpdate(
-            req.params.id, 
-            {name, email, age, weight, height, dietPreferences},
-            {new: true}
-        )
+        const user = await User.findById(req.params.id)
+        user.name = name
+        user.email = email
+        user.age = age
+        user.weight = weight
+        user.height = height
+        user.dietPreferences = dietPreferences
 
-    res.redirect('/userpage/' + user.id)
+
+        if(currentPassword && newPassword){
+            const isMatch = await bcrypt.compare(currentPassword, user.password)
+
+            if(!isMatch) {throw new Error('Niezgodne haslo')}
+
+            const hashedPassword = await bcrypt.hash(newPassword, 10)
+            await user.updatePassword(currentPassword, hashedPassword)
+        }
+
+
+        try {
+            const dietTypeU = await MealPlan.findOne({name: dietTypeVal})
+            if(!dietTypeU){
+                throw new Error(`Typ diety '${dietTypeVal}' nie znaleziony`)
+            }
+            console.log(dietTypeU);
+            user.mealPlan = dietTypeU._id;
+            user.markModified('mealPlan');
+
+        }catch(err){
+            console.log("ZLE");
+            console.log(err)
+        }
+
+
+
+        try {
+            console.log("przed zapisem");
+            await user.save()
+            console.log(user);
+            console.log("po zapisie");
+            console.log(user);
+        }
+        catch(err) {
+            log("Blad zapisu: ", err)
+        }
+
+
+        console.log("Haslo zaaktualizowane");
+        res.redirect('/userpage/' + user.id)
     }catch(err){
         console.log(err);
     }
 })
+
 
 //end routes
 

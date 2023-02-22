@@ -6,6 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- Bootstrap CSS -->
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+
+  <!-- JavaScript (including dependencies) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;700&display=swap" rel="stylesheet">
@@ -24,7 +29,7 @@
             <div class="links">
                 <ul class="nav-bar">
                     <li class="nav-bar-item"><a href="/">strona główna</a></li>
-                    <li class="nav-bar-item"><a href="#oferta">o mnie</a></li>
+                    <li class="nav-bar-item"><a href="#omnie">o mnie</a></li>
                     <li class="nav-bar-iten"><a href="#oNas">posiłki</a></li>
 
                     <li class="nav-bar-iten"><a href="/settings/<%= user.id %>">ustawienia</a></li>
@@ -57,7 +62,7 @@
     <div class="main-content info-about-user">
       <div id="Strona-glowna" class="main-content ">
         <div class="info">
-            <div class="text current-info">
+            <div class="text current-info" id="omnie"">
               <h3>O mnie</h3>
             <p>login: <strong><%= user.email %></strong></p>
             <p>wiek: <strong><%= user.age %></strong></p>
@@ -66,19 +71,30 @@
             <p>wzrost: <strong><%= user.height %>
             <%if(user.height){ %>cm<%}%></strong></p></strong></p>
             <p>preferencje żywieniowe: <strong><%= user.dietPreferences.join(", ") %></strong></p>
+            <p>aktualna dieta<strong>
+            <%
+                        %>
+              <%=user.mealPlan%>
+              <%if(user.mealPlan){ %><%=user.mealPlan.name%><%}%></strong></p>
+            </p>
             </div>
             <a href="/settings/<%= user.id %>">edytuj dane</a>
 
         </div>
     </div>
-    <div id="Strona-glowna" class="main-content">
-      <img src="../public/food.jpg" alt="">
+</div>
 
-      <div class="info">
-          <div class="text">
-          <h1>Witaj <%= user.name %> !</h1>
-          <p>Miło <strong>Cię</strong>  znów widzieć </p>
-          </div>
+<div id="oferta" class="diet-plans">
+  <h3 class="diet-plans-title">Wybierz plan dla siebie:</h3>
+  <div class="diet-plans-img">
+      <div class="img">
+          <p>Dieta jesienna</p>
+      </div>
+      <div class="img">
+          <p>Dieta śródziemnomorska</p>
+      </div>
+      <div class="img">
+          <p>Dieta wegetarianska</p>
       </div>
   </div>
 </div>
