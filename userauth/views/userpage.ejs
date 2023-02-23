@@ -37,6 +37,12 @@
                       <form action="/logout?_method=DELETE" method="POST">
                         <button type="submit">wyloguj się</button>
                     </form>
+                    </li>
+                    <li class="nav-item">
+                      <form action="/deleteuser/<%= user.id %>?_method=DELETE" method="POST">
+                        <button type="submit" class="nav-link">usuń użytkownika</button>
+                      </form>
+                    </li>
 
                 </ul>
             </div>

@@ -90,7 +90,7 @@ app.post("/register", checkNotAuthenticated, async (req, res) => {
         password: hashedPassword
       });
       await user.save();
-      console.log(user)
+    //   console.log(user)
       res.redirect("/login");
     } catch (e) {
       console.log(e);
@@ -125,6 +125,20 @@ app.delete('/logout', (req, res) => {
         res.redirect("/")
     })
 
+  });
+
+  app.delete('/deleteuser/:id', async (req, res) => {
+    try {
+      const deletedUser = await User.findByIdAndDelete(req.params.id);
+      if (!deletedUser) {
+        res.status(404).send('User not found');
+      } else {
+        res.redirect('/');
+      }
+    } catch (e) {
+      console.log(e);
+      res.redirect('/');
+    }
   });
 
 
@@ -228,23 +242,22 @@ app.post('/settings/:id', async(req, res)=> {
             if(!dietTypeU){
                 throw new Error(`Typ diety '${dietTypeVal}' nie znaleziony`)
             }
-            console.log(dietTypeU);
+            // console.log(dietTypeU);
             user.mealPlan = dietTypeU._id;
             user.markModified('mealPlan');
 
         }catch(err){
-            console.log("ZLE");
             console.log(err)
         }
 
 
 
         try {
-            console.log("przed zapisem");
+            // console.log("przed zapisem");
             await user.save()
-            console.log(user);
-            console.log("po zapisie");
-            console.log(user);
+            // console.log(user);
+            // console.log("po zapisie");
+            // console.log(user);
         }
         catch(err) {
             log("Blad zapisu: ", err)

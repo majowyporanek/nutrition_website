@@ -46,7 +46,7 @@ const zupaZDyni = new Meal(
           { name: "seler naciowy", amount: 1, unit: "sztuka" },
           { name: "bulion warzywny", amount: 1, unit: "litr" },
           { name: "gałka muszkatołowa", amount: 1, unit: "szczypta" },
-          { name: "kminek", amount: 1, unit: "łyżeczka" },
+          { name: "kminek", amount: 1, aunit: "łyżeczka" },
           { name: "mleczko kokosowe", amount: 200, unit: "ml" },
           { name: "olej", amount: 2, unit: "łyżki" },
           { name: "sól", amount: 1, unit: "szczypta" },
@@ -54,6 +54,7 @@ const zupaZDyni = new Meal(
         ],
         preparation:
           "1. Dynię obierz, usuń pestki i pokrój w kostkę. Cebulę i czosnek posiekaj. Imbir obierz i zetrzyj na tarce. Marchew i seler obierz i pokrój w kostkę.\n2. W dużym garnku rozgrzej olej, dodaj cebulę, czosnek i imbir, a następnie dodaj marchew i seler. Smaż na małym ogniu przez około 5 minut.\n3. Dodaj do garnka dynię, bulion warzywny, gałkę muszkatołową oraz kminek. Gotuj na małym ogniu przez około 30 minut, aż dynia zmięknie.\n4. Zupę zmiksuj blenderem, dodaj mleczko kokosowe i dokładnie wymieszaj. Dopraw solą i pieprzem do smaku.\n5. Podawaj zupę na ciepło z grzankami lub prażonymi pestkami dyni.",
+          image: "https://cdn.aniagotuje.com/pictures/articles/2018/10/658953-v-1080x1080.jpg"
         
       }
 )
@@ -97,7 +98,7 @@ const pieczonaOwsianka = new Meal({
     ],
     preparation:
       "Figi przekroić na połówki. Orzechy laskowe posiekać. Sałatę umyć i porwać na kawałki. Koziego sera pokroić w kostkę. Wymieszać wszystkie składniki w misce. Oliwę wymieszać z cukrem i octem balsamicznym. Doprawić do smaku solą i pieprzem. Polać sałatkę sosem.",
-    image: "https://www.kwestiasmaku.com/sites/kwestiasmaku.com/files/salatka_z_pieczonymi"
+    image: "https://cdn.aniagotuje.com/pictures/articles/2019/09/1237402-v-1080x1080.jpg"
 });
 
 
@@ -118,6 +119,7 @@ const salatkaSzparagowa = new Meal({
       { name: "pieprz", amount: 1, unit: "szczypta" }
     ],
     preparation: "1. Oczyść szparagi i papryki. Pokrój papryki w plastry, a szparagi na mniejsze kawałki.\n2. Rozgrzej grill. Grilluj szparagi i papryki przez kilka minut, aż będą lekko zrumienione.\n3. Pokrój ser feta w kostkę.\n4. Przygotuj dressing: w miseczce wymieszaj oliwę, ocet balsamiczny, miód, sól i pieprz.\n5. Na sporej misce ułóż rukolę, na nią połóż grillowane warzywa i fetę. Polej całość dressingiem. Podawaj od razu."
+    ,image:"https://mediaconvert.kukbuk.pl/12teBtmnCZMY8pNePhzflUzI8vUM0mX7nzv2iPHdDAQ/fill/1418/1682/fp:0.5:0.5/1/aHR0cHM6Ly9tZWRp/YS5rdWtidWsucGwv/bWVkaWEvaW1hZ2Vz/LzIwMjAvMDUtMDgv/c3pwYXJhZ2kwNDc5/LmpwZw.jpg"
   });
 
 
@@ -136,7 +138,7 @@ const salatkaSzparagowa = new Meal({
       { name: 'pieprz', amount: 0.25, unit: 'łyżeczki' },
     ],
     preparation: 'Pomidory sparzyć i obrać ze skóry. Cebulę i czosnek obrać i drobno pokroić. Bazylię umyć i drobno posiekać.\n\nWymieszać jajka z solą, pieprzem i startym serem pecorino.\n\nNa patelni rozgrzać oliwę z oliwek, dodać cebulę i czosnek i smażyć na złoty kolor. Następnie dodać pomidory i bazylię i dusić przez kilka minut. Wlać jajka z serem, lekko przemieszać, przykryć pokrywką i smażyć na małym ogniu przez około 15 minut.\n\nGdy spód zetnie się, frittatę przekładamy do piekarnika nagrzanego do 200 stopni Celsjusza i pieczemy przez około 5 minut, aż wierzch zetnie się i zrumieni.',
-    image: 'https://www.kwestiasmaku.com/sites/kwestiasmaku.com/files/frittata_z_pomidorami.jpg'
+    image: 'https://odczarujgary.pl/wp-content/uploads/2017/09/MG_8892-1024x683.jpg.webp'
   });
 
 
@@ -160,7 +162,7 @@ const salatkaSzparagowa = new Meal({
       { name: 'parmezan', amount: 20, unit: 'gram' },
     ],
     preparation: 'W garnku rozgrzać oliwę, dodać pokrojoną w kostkę cebulę i zeszklić. Dodać posiekany czosnek i chwilę podsmażyć. Następnie dodać ryż i chwilę podsmażyć, aż stanie się szklisty. Dodać wino i gotować, aż wyparuje. Kolejno dodać bulion partiami, gotując cały czas na małym ogniu, aż ryż będzie miękki. W osobnym garnku zagotować wodę i gotować na parze ryby przez około 5-7 minut. Na patelni rozgrzać oliwę, dodać groszek i jarmuż i podsmażyć przez kilka minut. Doprawić solą i pieprzem. W osobnej miseczce zmiksować rukolę, orzeszki piniowe i parmezan. Podawać risotto z groszkiem i jarmużem, rybą na parze i pesto rukolowym.',
-    image: 'https://www.kwestiasmaku.com/sites/kwestiasmaku.com/files/risotto_z_groszkiem_i_jarmuzem_z_ryba_gotowana_na_parze_i_pesto.jpg',
+    image: 'https://s3.przepisy.pl/przepisy3ii/img/variants/800x0/risotto-z-groszkiem-i-serem.jpg',
   });
 
   
@@ -199,7 +201,7 @@ const salatkaSzparagowa = new Meal({
       }
     ],
     preparation: "Wszystkie składniki umieścić w wysokim naczyniu i zmiksować na gładką masę. Masę przelać do gofrownicy i piec ok. 5 minut.",
-    image: "https://www.kwestiasmaku.com/sites/kwestiasmaku.com/files/gofry_jaglane.jpg"
+    image: "https://www.garneczki.pl/blog/wp-content/uploads/2018/08/Gofry-1024x733.jpg"
   });
   
   
@@ -237,7 +239,7 @@ const salatkaSzparagowa = new Meal({
       {name: "olej", amount: 2, unit: "łyżki"}
     ],
     preparation: "1. Cebulę pokroić w kostkę, papryki, bakłażana i cukinię w paski. Pomidory sparzyć, obrać ze skóry i pokroić w kostkę. \n2. Czosnek obrać i drobno posiekać. Papryczkę chili umyć, przekroić na pół, usunąć nasiona i drobno posiekać. \n3. Na patelni rozgrzać olej i dodać cebulę. Smażyć na złoty kolor. \n4. Dodać bakłażana i cukinię, smażyć przez kilka minut, a następnie dodać papryki, pomidory, czosnek, kminek i papryczkę chili. Doprawić solą i pieprzem. \n5. Dusić na małym ogniu około 20 minut, aż warzywa zmiękną. Podawać z chlebem lub ryżem.",
-    image: "https://www.kwestiasmaku.com/sites/kwestiasmaku.com/files/styles/kotlety_w_papryce_0/public/leczo-wegetarianskie.jpg?itok=iV5Hys-R"
+    image: "https://d3iamf8ydd24h9.cloudfront.net/pictures/articles/2018/05/62227-v-900x556.jpg"
   }
   )
   
