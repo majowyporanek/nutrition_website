@@ -54,7 +54,7 @@ const zupaZDyni = new Meal(
         ],
         preparation:
           "1. Dynię obierz, usuń pestki i pokrój w kostkę. Cebulę i czosnek posiekaj. Imbir obierz i zetrzyj na tarce. Marchew i seler obierz i pokrój w kostkę.\n2. W dużym garnku rozgrzej olej, dodaj cebulę, czosnek i imbir, a następnie dodaj marchew i seler. Smaż na małym ogniu przez około 5 minut.\n3. Dodaj do garnka dynię, bulion warzywny, gałkę muszkatołową oraz kminek. Gotuj na małym ogniu przez około 30 minut, aż dynia zmięknie.\n4. Zupę zmiksuj blenderem, dodaj mleczko kokosowe i dokładnie wymieszaj. Dopraw solą i pieprzem do smaku.\n5. Podawaj zupę na ciepło z grzankami lub prażonymi pestkami dyni.",
-        image: "https://www.kwestiasmaku.com/sites/kwestiasmaku.com/files/zupa_z_dyni.jpg",
+        
       }
 )
 
@@ -79,7 +79,7 @@ const pieczonaOwsianka = new Meal({
   4. Dodać jabłka, rodzynki i połowę orzechów do owsianki i wymieszać.
   5. Masło rozpuścić na patelni, dodać resztę orzechów i zrumienić.
   6. Przełożyć owsiankę do naczynia żaroodpornego posmarowanego masłem, wierzch posypać orzechami i piec około 30-40 minut w temperaturze 180 stopni.`,
-    image: "https://www.kwestiasmaku.com/sites/kwestiasmaku.com/files/pieczona_owsianka_5.JPG",
+    image: "https://images.unsplash.com/photo-1622646547398-5d425b647a53?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2787&q=80",
   });
 
 

@@ -80,21 +80,48 @@
         </div>
     </div>
 </div>
+<div class="main-content main-content-special">
+  <h2>Obecne dania: </h2>
+  <!-- <% if (user.mealPlan) { %>
+    <h2>Obecny plan: <%= user.mealPlan.name %></h2>
+    <p><strong>Description:</strong> <%= user.mealPlan.description %></p> -->
+<div class="all-recipes">
+  <% user.mealPlan.meals.forEach(function(meal) { %>
+    <div class="recipes recipes-special recipe-1-container">
+      <img src="<%= meal.image %>" alt="<%= meal.name %>">
 
-<div id="oferta" class="diet-plans">
-  <h3 class="diet-plans-title">Wybierz plan dla siebie:</h3>
-  <div class="diet-plans-img">
-      <div class="img">
-          <p>Dieta jesienna</p>
+      <div class="info">
+        <div class="text recipe-1-text">
+      <h5><%= meal.name %></h5>
+      <p><%= meal.description %></p>
+      <p><%= meal.preparation %></p>
+
       </div>
-      <div class="img">
-          <p>Dieta śródziemnomorska</p>
+      <% if (meal.ingredients) { %>
+        <div class="lists">
+          <div class="steps">
+            <p>składniki:</p>
+        <ul>
+          <% meal.ingredients.forEach(function(ingredient) { %>
+            <li><%= ingredient.name %> - <%= ingredient.amount %> <%= ingredient.unit %></li>
+          <% }); %>
+        </ul>
       </div>
-      <div class="img">
-          <p>Dieta wegetarianska</p>
-      </div>
-  </div>
+      <% } %>
+    </div>
+
+
+    </div>
+  <% }); %>
+<% } %>
 </div>
+
+</div>
+</div>
+
+
+
+
     </main>
     </div>
   <%- include('../public/scriptuser.ejs') %>

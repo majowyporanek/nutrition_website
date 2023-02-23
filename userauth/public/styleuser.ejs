@@ -75,6 +75,37 @@ main {
     align-items: center;
 }
 
+.main-content-special {
+    flex-direction: column;
+}
+.recipes-special {
+    flex-direction: row;
+}
+
+.recipes-special img {
+    height: 500px;
+    max-height: fit-content;
+    /* height: fit-content; */
+}
+
+.recipes-special p {
+    font-size: .9em;
+}
+
+.recipes-special .info {
+    font-size: 0.9em;
+    flex-direction: column-reverse;
+} 
+
+.recipes-special .info p {
+    font-size: 0.9em;
+}
+
+.main-content-special{
+    background-color: var(--bg-color);
+}
+
+
 .info-about-user {
     margin-top: 4em;
     flex-direction: row;
@@ -95,6 +126,8 @@ main {
 .recipes {
     width: 100%;
 }
+
+
 
 .diet-plans, .sekcja-o-nas {
     width: 100%;
@@ -385,6 +418,8 @@ span.bar {
     gap:.5em;
     margin-bottom: 3em;
 }
+
+
 
 .recipes ul, ol {
     margin:1em 0;

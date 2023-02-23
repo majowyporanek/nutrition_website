@@ -132,8 +132,14 @@ app.delete('/logout', (req, res) => {
 // requests to /users/:id
 app.get('/userpage/:id', checkAuthenticated, async(req, res)=>{
     try {
-        const clientData = await User.findById(req.params.id).populate('mealPlan')
-        
+        // const clientData = await User.findById(req.params.id).populate('mealPlan')
+
+    const clientData = await User.findById(req.params.id).populate({
+      path: 'mealPlan',
+      populate: {
+        path: 'meals'
+      }
+    });
         res.render('userpage.ejs', {user: clientData})
     }catch(err){
         console.log(err);
