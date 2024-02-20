@@ -1,6 +1,6 @@
-CRUD Web Application
+#Projekt na przedmiot Techniki WWW - Informatyka Stosowana III semestr 2022/2023.
 
-Project stack:
+#Technologie:
 express
 ejs
 bcript (library to protect password)
